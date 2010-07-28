@@ -24,7 +24,13 @@ Gem::Specification.new do |s|
      "LICENSE",
      "README.rdoc",
      "Rakefile",
+     "VERSION",
+     "bin/ona",
      "lib/ona.rb",
+     "lib/ona_cli.rb",
+     "lib/ona_server.rb",
+     "lib/ona_stack.rb",
+     "ona.gemspec",
      "test/helper.rb",
      "test/test_ona.rb"
   ]
