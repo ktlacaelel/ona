@@ -23,5 +23,6 @@ loop do
   cli.show line if line =~ /show/
   cli.setup line if line =~ /setup/
   cli.deploy line if line =~ /deploy/
-  cli.ssh line if line =~ /ssh/
+  cli.ssh_root line if line =~ /ssh-root/
+  cli.ssh_deploy line if line =~ /ssh-deploy/
 end

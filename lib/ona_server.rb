@@ -29,11 +29,11 @@ module Ona
       "rake cook server=root@#{ip} dna=#{dna} instance_role=#{role}"
     end
 
-    def to_ssh
+    def to_ssh user
 "osascript 2>/dev/null <<EOF
     tell application \"Terminal\"
         activate
-        do script with command \"ssh root@#{ip}\"
+        do script with command \"ssh #{user}@#{ip}\"
     end tell
 EOF"
     end
