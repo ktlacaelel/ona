@@ -38,6 +38,10 @@ module Ona
 EOF"
     end
 
+    def to_http
+      "open http://#{ip}"
+    end
+
     def to_short_s
       "#{id}".ljust(5) + "#{desc}"
     end

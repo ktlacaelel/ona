@@ -24,5 +24,5 @@ loop do
   cli.setup line if line =~ /setup/
   cli.deploy line if line =~ /deploy/
   cli.ssh_root line if line =~ /ssh-root/
-  cli.ssh_deploy line if line =~ /ssh-deploy/
+  cli.ssh_deploy line if line =~ /ssh-app/
 end
