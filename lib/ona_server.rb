@@ -13,6 +13,14 @@ module Ona
       "rake upload_ssh_key server=root@#{ip} pass=#{pass} key=#{local_key}"
     end
 
+    def say_deployed
+      "say #{desc} deployed"
+    end
+
+    def say_finished_setup
+      "say #{desc} setup terminated"
+    end
+
     def bootstrap
       "rake bootstrap server=root@#{ip}"
     end

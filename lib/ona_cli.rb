@@ -65,12 +65,14 @@ module Ona
     def deploy string
       selected_servers(string).each do |server|
         system server.deploy
+        system server.say_deployed
       end
     end
 
     def setup string
       install_ssh_keys string
       bootstrap string
+      system server.say_finished_setup
     end
 
     protected
