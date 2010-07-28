@@ -39,7 +39,7 @@ module Ona
 
       ssh 1 2 3     # Open three ssh sessions to 1 2 and 3
 
-      quit          # Setup servers with ids: 1 2 and 3
+      quit          # termintes the ona shell.
 
       "
     end
