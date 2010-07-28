@@ -1,0 +1,22 @@
+#!/usr/bin/env ruby
+
+require 'rubygems'
+require 'readline'
+require 'ona'
+
+stack = Ona::Stack.new
+eval File.read 'Onafile'
+cli = Ona::Cli.new(stack)
+
+loop do
+  line = Readline.readline('Ona> ', true)
+  if line == 'quit'
+    puts 'bye.'
+    break
+  end
+  cli.ls if line == 'ls'
+  cli.help if line == 'help'
+  cli.list line if line =~ /list/
+  cli.setup line if line =~ /setup/
+  cli.deploy line if line =~ /deploy/
+end
