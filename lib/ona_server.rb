@@ -56,7 +56,6 @@ EOF"
       Role         #{role}
       Password     #{pass}
 
-      ssh root@#{ip}
       "
     end
 

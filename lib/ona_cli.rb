@@ -44,7 +44,7 @@ module Ona
 
     def http string
       selected_servers(string).each do |server|
-        puts server.to_http
+        system server.to_http
       end
     end
 
