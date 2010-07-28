@@ -10,7 +10,7 @@ module Ona
     end
 
     def setup_ssh
-      "rake upload_ssh_key server=#{ip} pass=#{pass} key=#{local_key}"
+      "rake upload_ssh_key server=root@#{ip} pass=#{pass} key=#{local_key}"
     end
 
     def bootstrap
