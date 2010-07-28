@@ -16,7 +16,7 @@ loop do
   end
   cli.ls if line == 'ls'
   cli.help if line == 'help'
-  cli.list line if line =~ /list/
+  cli.show line if line =~ /show/
   cli.setup line if line =~ /setup/
   cli.deploy line if line =~ /deploy/
 end

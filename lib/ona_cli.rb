@@ -25,8 +25,8 @@ module Ona
       help          # show this help
 
       ls            # short list for available servers
-      list 1        # detailed list for a specific server
-      list 1 2 3    # detailed list for servers 1 3 and 3
+      show 1        # detailed info for a specific server
+      show 1 2 3    # detailed info for servers 1 3 and 3
 
       deploy 1      # Deploy a specific server
       deploy 1 2 3  # Deploy servers with ids: 1 2 and 3
@@ -39,7 +39,7 @@ module Ona
       "
     end
 
-    def list string
+    def show string
       selected_servers(string).each do |server|
         puts server.to_s
       end
@@ -48,6 +48,12 @@ module Ona
     def ls
       @stack.to_a.each do |server|
         puts server.to_short_s
+      end
+    end
+
+    def ssh string
+      selected_servers(string).each do |server|
+        system server.to_ssh
       end
     end
 
