@@ -4,6 +4,10 @@ require 'rubygems'
 require 'readline'
 require 'ona'
 
+unless File.exists? 'Onafile'
+  abort 'Please create a file named:[Onafile] to start the shell.'
+end
+
 stack = Ona::Stack.new
 eval File.read 'Onafile'
 cli = Ona::Cli.new(stack)
