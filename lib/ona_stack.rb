@@ -5,7 +5,6 @@ module Ona
     def initialize
       @list = []
       @id = 0
-      @rack_machine = './'
     end
 
     def append &block
@@ -13,10 +12,6 @@ module Ona
       server = Server.new
       server.load_block(@id, &block)
       @list << server
-    end
-
-    def rack_machine path
-      @rack_machine = path
     end
 
     def find num

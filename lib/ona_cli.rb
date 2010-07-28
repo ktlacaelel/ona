@@ -2,20 +2,12 @@ module Ona
 
   class Cli
 
-    FRINED_ACTIONS = %q{deploy setup}
-    LONE_ACTIONS = %q{list ls}
-
     def initialize(stack)
       @stack = stack
     end
 
     def selected_servers string
       @stack.find_all(*string.scan(/\d+/).map { |id| id.to_i })
-    end
-
-    def unknown_command
-      puts 'Unknown command.'
-      help
     end
 
     def help
