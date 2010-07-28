@@ -50,10 +50,6 @@ module Ona
       end
     end
 
-    def system string
-      puts string
-    end
-
     def deploy string
       selected_servers(string).each do |server|
         system server.deploy
