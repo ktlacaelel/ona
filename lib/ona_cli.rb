@@ -25,7 +25,8 @@ module Ona
       help          # show this help
 
       ls            # short list for available servers
-      list          # detailed list for available servers
+      list 1        # detailed list for a specific server
+      list 1 2 3    # detailed list for servers 1 3 and 3
 
       deploy 1      # Deploy a specific server
       deploy 1 2 3  # Deploy servers with ids: 1 2 and 3
