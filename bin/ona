@@ -19,4 +19,5 @@ loop do
   cli.show line if line =~ /show/
   cli.setup line if line =~ /setup/
   cli.deploy line if line =~ /deploy/
+  cli.ssh line if line =~ /ssh/
 end

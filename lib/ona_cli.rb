@@ -34,6 +34,11 @@ module Ona
       setup 1       # Upload ssh-keys and bootstrap server
       setup 1 2 3   # Setup servers with ids: 1 2 and 3
 
+      ssh 1         # Open a ssh session to a remote server
+                    # (new window)
+
+      ssh 1 2 3     # Open three ssh sessions to 1 2 and 3
+
       quit          # Setup servers with ids: 1 2 and 3
 
       "
