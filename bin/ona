@@ -14,7 +14,7 @@ cli = Ona::Cli.new(stack)
 
 loop do
   line = Readline.readline('Ona> ', true)
-  if line == 'quit'
+  if (line == 'quit') || (line == 'exit')
     puts 'bye.'
     break
   end
@@ -23,7 +23,8 @@ loop do
   cli.show line if line =~ /show/
   cli.setup line if line =~ /setup/
   cli.deploy line if line =~ /deploy/
-  cli.ssh_root line if line =~ /ssh-root/
-  cli.ssh_deploy line if line =~ /ssh-app/
+  cli.ssh_root line if line =~ /ssh#/
+  cli.ssh_deploy line if line =~ /ssh/
   cli.http line if line =~ /http/
+  cli.key line if line =~ /key/
 end

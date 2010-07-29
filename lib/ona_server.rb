@@ -21,6 +21,10 @@ module Ona
       "say #{desc} setup terminated"
     end
 
+    def say_sure_to_deploy
+      "say 'Are you sure to deploy #{desc}'"
+    end
+
     def bootstrap
       "rake bootstrap server=root@#{ip}"
     end
