@@ -74,9 +74,9 @@ module Ona
     def deploy string
       selected_servers(string).each do |server|
         puts server.to_s
-        system server.say_sure_to_deploy
         puts 'Type [yes] to continue. or anything else to skip.'
         print 'What to do? :'
+        system server.say_sure_to_deploy
         line = gets
         next unless line.chomp == 'yes'
         system server.deploy
