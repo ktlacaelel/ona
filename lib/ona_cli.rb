@@ -77,7 +77,8 @@ module Ona
         system server.say_sure_to_deploy
         puts 'Type [yes] to continue. or anything else to skip.'
         print 'What to do? :'
-        next unless gets == 'yes'
+        line = gets
+        next unless line == 'yes'
         system server.deploy
         system server.say_deployed
       end
