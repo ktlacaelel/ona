@@ -78,6 +78,8 @@ module Ona
         puts 'Type [yes] to continue. or anything else to skip.'
         print 'What to do? :'
         line = gets
+        puts 'here'
+        puts line.inspect
         next unless line == 'yes'
         system server.deploy
         system server.say_deployed
