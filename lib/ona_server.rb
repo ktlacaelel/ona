@@ -10,7 +10,10 @@ module Ona
     end
 
     def setup_ssh
+      puts 'Setting up key for root'
       "rake upload_ssh_key server=root@#{ip} pass=#{pass} key=#{local_key}"
+      puts 'Setting up key for deploy'
+      "rake upload_ssh_key server=deploy@#{ip} pass=#{pass} key=#{local_key}"
     end
 
     def say_deployed
