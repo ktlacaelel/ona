@@ -106,6 +106,12 @@ module Ona
       end
     end
 
+    def install_ssh_keys string
+      selected_servers(string).each do |server|
+        system server.setup_ssh
+      end
+    end
+
   end
 
 end
