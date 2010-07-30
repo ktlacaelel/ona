@@ -26,5 +26,6 @@ loop do
   cli.ssh_root line if line =~ /ssh#/
   cli.ssh_deploy line if line =~ /ssh /
   cli.http line if line =~ /http/
-  cli.key line if line =~ /key/
+  cli.key line if line =~ /key /
+  cli.keys if line =~ /keys/
 end
