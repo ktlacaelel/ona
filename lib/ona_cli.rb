@@ -19,6 +19,7 @@ module Ona
       help              # Show this help
       http 1            # Open the server in default browser.
       key 1             # Uploads my public ssh-key to remote server (root)
+      keys              # Uploads my public ssh-key to all servers (root)
       ls                # Short list for available servers
       quit              # Termintes the ona shell.
       setup 1           # Upload ssh-keys and bootstrap server
@@ -91,17 +92,17 @@ module Ona
       system server.say_finished_setup
     end
 
+    def keys
+      @stack.to_a.each do |server|
+        system server.setup_ssh
+      end
+    end
+
     protected
 
     def bootstrap string
       selected_servers(string).each do |server|
         system server.bootstrap
-      end
-    end
-
-    def install_ssh_keys string
-      selected_servers(string).each do |server|
-        system server.setup_ssh
       end
     end
 
