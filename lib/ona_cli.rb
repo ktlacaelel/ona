@@ -15,21 +15,22 @@ module Ona
       Ona -- Deployment simplified.
 
       deploy 1          # Deploy a specific server
-      help              # show this help
-      http 1            # Open the servers in default browser.
+      exit              # Same as *quit*
+      help              # Show this help
+      http 1            # Open the server in default browser.
       key 1             # Uploads my public ssh-key to remote server (root)
-      ls                # short list for available servers
-      quit              # termintes the ona shell.
+      ls                # Short list for available servers
+      quit              # Termintes the ona shell.
       setup 1           # Upload ssh-keys and bootstrap server
-      show 1            # detailed info for a specific server
-      ssh 1             # Open a ssh session as deploy to a remote server
-      ssh# 1            # Open a ssh session as root to a remote server
+      show 1            # Detailed info for a specific server
+      ssh 1             # Open a ssh session as *deploy* on remote server (new window)
+      ssh# 1            # Open a ssh session as *root* to a remote server (new window)
 
       --
 
       Note: 1 is a server id, you can use many ids!
 
-      show 1 2 3        # will display info for three servers.
+      show 1 2 3        # Will display info for three servers.
 
       "
     end
