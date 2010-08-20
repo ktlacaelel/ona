@@ -75,9 +75,7 @@ module Ona
 
     def deploy string
       selected_servers(string).each do |server|
-        puts server.to_s
-        puts 'Type [yes] to continue. or anything else to skip.'
-        print 'What to do? :'
+        prompt_for_continuation
         system server.say_sure_to_deploy
         line = gets
         next unless line.chomp == 'yes'
@@ -87,9 +85,15 @@ module Ona
     end
 
     def setup string
-      install_ssh_keys string
-      bootstrap string
-      system server.say_finished_setup
+      key string
+      selected_servers(string).each do |server|
+        prompt_for_continuation
+        system server.say_sure_to_setup
+        line = gets
+        next unless line.chomp == 'yes'
+        system server.bootstrap
+        system server.say_finished_setup
+      end
     end
 
     def keys
@@ -100,16 +104,10 @@ module Ona
 
     protected
 
-    def bootstrap string
-      selected_servers(string).each do |server|
-        system server.bootstrap
-      end
-    end
-
-    def install_ssh_keys string
-      selected_servers(string).each do |server|
-        system server.setup_ssh
-      end
+    def prompt_for_continuation server
+      puts server.to_s
+      puts 'Type [yes] to continue. or anything else to skip.'
+      print 'What to do? >'
     end
 
   end
