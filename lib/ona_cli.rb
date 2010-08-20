@@ -75,7 +75,7 @@ module Ona
 
     def deploy string
       selected_servers(string).each do |server|
-        prompt_for_continuation
+        prompt_for_continuation server
         system server.say_sure_to_deploy
         line = gets
         next unless line.chomp == 'yes'
@@ -87,7 +87,7 @@ module Ona
     def setup string
       key string
       selected_servers(string).each do |server|
-        prompt_for_continuation
+        prompt_for_continuation server
         system server.say_sure_to_setup
         line = gets
         next unless line.chomp == 'yes'
