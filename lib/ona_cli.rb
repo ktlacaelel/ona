@@ -50,7 +50,6 @@ module Ona
       end
     end
 
-
     def show string
       selected_servers(string).each do |server|
         puts server.to_s
