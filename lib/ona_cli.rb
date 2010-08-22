@@ -22,6 +22,7 @@ module Ona
       keys              # Uploads my public ssh-key to all servers (root)
       ls                # Short list for available servers
       quit              # Termintes the ona shell.
+      rake              # Shows rake tasks.
       setup 1           # Upload ssh-keys and bootstrap server
       show 1            # Detailed info for a specific server
       ssh 1             # Open a ssh session as *deploy* on remote server (new window)
@@ -44,6 +45,7 @@ module Ona
 
     def key string
       selected_servers(string).each do |server|
+        puts 'Setting up key for root'
         system server.setup_ssh
       end
     end
@@ -96,8 +98,18 @@ module Ona
       end
     end
 
+    def rake string
+      selected_servers(string).each do |server|
+        server.to_s
+        server.rake.each do |task|
+          puts task
+        end
+      end
+    end
+
     def keys
       @stack.to_a.each do |server|
+        puts 'Setting up key for root'
         system server.setup_ssh
       end
     end

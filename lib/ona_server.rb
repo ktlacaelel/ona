@@ -10,7 +10,6 @@ module Ona
     end
 
     def setup_ssh
-      puts 'Setting up key for root'
       "rake upload_ssh_key server=root@#{ip} pass=#{pass} key=#{local_key}"
     end
 
@@ -66,6 +65,10 @@ EOF"
       Password     #{pass}
 
       "
+    end
+
+    def rake
+      [setup_ssh, bootstrap, deploy]
     end
 
     def local_key
