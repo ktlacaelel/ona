@@ -28,4 +28,5 @@ loop do
   cli.http line if line =~ /http/
   cli.key line if line =~ /key /
   cli.keys if line =~ /keys/
+  cli.rake line if line =~ /rake /
 end
