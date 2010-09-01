@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{ona}
-  s.version = "0.1.24"
+  s.version = "0.1.26"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["kazuyoshi tlacaelel"]
-  s.date = %q{2010-08-21}
+  s.date = %q{2010-09-01}
   s.default_executable = %q{ona}
   s.description = %q{Simple shell for deployment.}
   s.email = %q{kazu.dev@gmail.com}

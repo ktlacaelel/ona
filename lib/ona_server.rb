@@ -38,12 +38,7 @@ module Ona
     end
 
     def to_ssh user
-"osascript 2>/dev/null <<EOF
-    tell application \"Terminal\"
-        activate
-        do script with command \"ssh #{user}@#{ip}\"
-    end tell
-EOF"
+      "open ssh://#{user}@#{ip}"
     end
 
     def to_http
