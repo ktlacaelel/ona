@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["kazuyoshi tlacaelel"]
-  s.date = %q{2010-09-01}
+  s.date = %q{2011-10-27}
   s.default_executable = %q{ona}
   s.description = %q{Simple shell for deployment.}
   s.email = %q{kazu.dev@gmail.com}
@@ -29,6 +29,7 @@ Gem::Specification.new do |s|
      "bin/ona",
      "lib/ona.rb",
      "lib/ona_cli.rb",
+     "lib/ona_instructions.rb",
      "lib/ona_server.rb",
      "lib/ona_stack.rb",
      "ona.gemspec",

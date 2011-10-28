@@ -2,12 +2,62 @@ module Ona
 
   class Cli
 
+    TRANSLATION = {
+      'show'   => { :method => :show,      :id_required => true   },
+      'setup'  => { :method => :setup,     :id_required => true   },
+      'deploy' => { :method => :deploy,    :id_required => true   },
+      'ssh#'   => { :method => :ssh_root,  :id_required => true   },
+      'ssh'    => { :method => :ssh_deploy,:id_required => true   },
+      'http'   => { :method => :http,      :id_required => true   },
+      'key'    => { :method => :key,       :id_required => true   },
+      'keys'   => { :method => :keys,      :id_required => true   },
+      'rake'   => { :method => :rake,      :id_required => true   },
+      'ls'     => { :method => :ls,        :id_required => false  },
+      'help'   => { :method => :help,      :id_required => false  },
+    }
+
     def initialize(stack)
-      @stack = stack
+      @stack        = stack
+      @instructions = Ona::Instructions.new(/[a-z]+[#]*/, /\d+/)
     end
 
-    def selected_servers string
-      @stack.find_all(*string.scan(/\d+/).map { |id| id.to_i })
+    def parse command_string
+      # Handle this separately for now.
+      return run_instruction('ls', 0)   if command_string == 'ls'
+      return run_instruction('help', 0) if command_string == 'help'
+
+      @instructions.define_command_string(command_string)
+      group = @instructions.group_targets_by_instruction
+      copy  = group.dup
+      copy.pop
+
+      # Only last group has ids?
+      if copy.all? { |x| x.values == [[]] }
+        @instructions.instructions.each do |instruction|
+          @instructions.targets.each do |target|
+            run_instruction instruction, target
+          end
+        end
+        return
+      end
+
+      # Run by group.
+      group.each do |hash|
+        instruction, targets = hash.to_a[0][0], hash.to_a[0][1]
+        targets.each do |target|
+          run_instruction instruction, target
+        end
+      end
+    end
+
+    def run_instruction instruction, target
+      return unless TRANSLATION.keys.include?(instruction)
+      hash = TRANSLATION[instruction]
+      cmd  = "#{TRANSLATION[instruction][:method]}"
+      if (hash[:id_required])
+        cmd << "(#{target.to_i})"
+      end
+      eval cmd
     end
 
     def help
@@ -37,21 +87,21 @@ module Ona
       "
     end
 
-    def http string
-      selected_servers(string).each do |server|
+    def http server_id
+      @stack.find_all(server_id).each do |server|
         system server.to_http
       end
     end
 
-    def key string
-      selected_servers(string).each do |server|
+    def key server_id
+      @stack.find_all(server_id).each do |server|
         puts 'Setting up key for root'
         system server.setup_ssh
       end
     end
 
-    def show string
-      selected_servers(string).each do |server|
+    def show server_id
+      @stack.find_all(server_id).each do |server|
         puts server.to_s
       end
     end
@@ -62,20 +112,20 @@ module Ona
       end
     end
 
-    def ssh_deploy string
-      selected_servers(string).each do |server|
+    def ssh_deploy server_id
+      @stack.find_all(server_id).each do |server|
         system server.to_ssh 'deploy'
       end
     end
 
-    def ssh_root string
-      selected_servers(string).each do |server|
+    def ssh_root server_id
+      @stack.find_all(server_id).each do |server|
         system server.to_ssh 'root'
       end
     end
 
-    def deploy string
-      selected_servers(string).each do |server|
+    def deploy server_id
+      @stack.find_all(server_id).each do |server|
         prompt_for_continuation server
         system server.say_sure_to_deploy
         line = gets
@@ -85,9 +135,9 @@ module Ona
       end
     end
 
-    def setup string
-      key string
-      selected_servers(string).each do |server|
+    def setup server_id
+      key server_id
+      @stack.find_all(server_id).each do |server|
         prompt_for_continuation server
         system server.say_sure_to_setup
         line = gets
@@ -97,8 +147,8 @@ module Ona
       end
     end
 
-    def rake string
-      selected_servers(string).each do |server|
+    def rake server_id
+      @stack.find_all(server_id).each do |server|
         server.to_s
         server.rake.each do |task|
           puts task

@@ -13,20 +13,10 @@ eval File.read 'Onafile'
 cli = Ona::Cli.new(stack)
 
 loop do
-  line = Readline.readline('Ona> ', true)
+  line = Readline.readline("[0;36;1mOna[0m> ", true)
   if (line == 'quit') || (line == 'exit')
     puts 'bye.'
     break
   end
-  cli.ls if line == 'ls'
-  cli.help if line == 'help'
-  cli.show line if line =~ /show/
-  cli.setup line if line =~ /setup/
-  cli.deploy line if line =~ /deploy/
-  cli.ssh_root line if line =~ /ssh#/
-  cli.ssh_deploy line if line =~ /ssh /
-  cli.http line if line =~ /http/
-  cli.key line if line =~ /key /
-  cli.keys if line =~ /keys/
-  cli.rake line if line =~ /rake /
+  cli.parse(line)
 end
