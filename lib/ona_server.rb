@@ -41,6 +41,10 @@ module Ona
       "open ssh://#{user}@#{ip}"
     end
 
+    def to_go user
+      "ssh #{user}@#{ip}"
+    end
+
     def to_http
       "open http://#{ip}"
     end

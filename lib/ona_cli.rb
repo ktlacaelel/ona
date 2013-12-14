@@ -8,6 +8,8 @@ module Ona
       'deploy' => { :method => :deploy,    :id_required => true   },
       'ssh#'   => { :method => :ssh_root,  :id_required => true   },
       'ssh'    => { :method => :ssh_deploy,:id_required => true   },
+      'go'     => { :method => :go_deploy, :id_required => true   },
+      'go#'    => { :method => :go_root,   :id_required => true   },
       'http'   => { :method => :http,      :id_required => true   },
       'key'    => { :method => :key,       :id_required => true   },
       'keys'   => { :method => :keys,      :id_required => true   },
@@ -66,6 +68,8 @@ module Ona
 
       deploy 1          # Deploy a specific server
       exit              # Same as *quit*
+      go                # Go to server without opening a new window.
+      go#               # Same as go but do it as root.
       help              # Show this help
       http 1            # Open the server in default browser.
       key 1             # Uploads my public ssh-key to remote server (root)
@@ -121,6 +125,18 @@ module Ona
     def ssh_root server_id
       @stack.find_all(server_id).each do |server|
         system server.to_ssh 'root'
+      end
+    end
+
+    def go_deploy server_id
+      @stack.find_all(server_id).each do |server|
+        system server.to_go 'deploy'
+      end
+    end
+
+    def go_root server_id
+      @stack.find_all(server_id).each do |server|
+        system server.to_go 'deploy'
       end
     end
 
