@@ -136,7 +136,7 @@ module Ona
 
     def go_root server_id
       @stack.find_all(server_id).each do |server|
-        system server.to_go 'deploy'
+        system server.to_go 'root'
       end
     end
 
