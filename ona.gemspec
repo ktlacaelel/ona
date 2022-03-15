@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = "ona"
-  s.version = "0.4.0"
+  s.version = "1.0.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["kazuyoshi tlacaelel"]
@@ -27,10 +27,6 @@ Gem::Specification.new do |s|
     "VERSION",
     "bin/ona",
     "lib/ona.rb",
-    "lib/ona_cli.rb",
-    "lib/ona_instructions.rb",
-    "lib/ona_server.rb",
-    "lib/ona_stack.rb",
     "ona.gemspec",
     "test/helper.rb",
     "test/test_ona.rb"

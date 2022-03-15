@@ -8,15 +8,7 @@ unless File.exists? 'Onafile'
   abort 'Please create a file named:[Onafile] to start the shell.'
 end
 
-stack = Ona::Stack.new
 eval File.read 'Onafile'
-cli = Ona::Cli.new(stack)
 
-loop do
-  line = Readline.readline("[0;36;1mOna[0m> ", true)
-  if (line == 'quit') || (line == 'exit')
-    puts 'bye.'
-    break
-  end
-  cli.parse(line)
-end
+Ona.main
+
