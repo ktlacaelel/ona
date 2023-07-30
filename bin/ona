@@ -4,7 +4,7 @@ require 'rubygems'
 require 'readline'
 require 'ona'
 
-unless File.exists? 'Onafile'
+unless File.exist? 'Onafile'
   abort 'Please create a file named:[Onafile] to start the shell.'
 end
 
