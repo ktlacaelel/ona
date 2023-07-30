@@ -10,5 +10,11 @@ end
 
 eval File.read 'Onafile'
 
+if ARGV.size > 0
+  Ona.defaults
+  Ona.run(ARGV.join(' '))
+  exit 0
+end
+
 Ona.main
 

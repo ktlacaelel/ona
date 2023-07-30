@@ -1,7 +1,7 @@
 Gem::Specification.new do |spec|
   spec.name = %q{ona}
-  spec.version = "1.0.2"
-  spec.date = %q{2023-07-29}
+  spec.version = "1.0.3"
+  spec.date = Time.now.strftime("%Y-%m-%d")
   spec.summary = %q{ona - utility to build shell tools}
   spec.author = 'Kazuyoshi Tlacaelel'
   spec.homepage = 'https://github.com/ktlacaelel/ona'
