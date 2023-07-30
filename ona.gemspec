@@ -1,6 +1,6 @@
 Gem::Specification.new do |spec|
   spec.name = %q{ona}
-  spec.version = "1.0.1"
+  spec.version = "1.0.2"
   spec.date = %q{2023-07-29}
   spec.summary = %q{ona - utility to build shell tools}
   spec.author = 'Kazuyoshi Tlacaelel'
@@ -9,6 +9,7 @@ Gem::Specification.new do |spec|
   spec.license = 'MIT'
   spec.require_paths = ["lib"]
   spec.bindir = 'bin'
+  spec.add_runtime_dependency 'isna', '0.0.4'
   spec.files = [
     "Gemfile",
     "Gemfile.lock",
